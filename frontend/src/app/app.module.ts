@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { RatingModule } from 'ng-starrating';
+import { SearchComponent } from './components/partials/search/search.component';
 
 @NgModule({
   // declarations holds the components we can use in our app.
-  declarations: [AppComponent, HeaderComponent, HomeComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, SearchComponent],
   // imports holds the libraries/frameworks we can use in our app.
   imports: [BrowserModule, AppRoutingModule, RatingModule],
   providers: [],

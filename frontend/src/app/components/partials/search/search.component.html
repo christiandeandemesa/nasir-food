@@ -1,0 +1,14 @@
+<!--SEARCH BAR-->
+<div>
+  <!-- #s is a template variable that holds the data of this input -->
+  <!-- keyup.enter executes the search method when a user releases the enter key -->
+  <input
+    #s
+    type="text"
+    placeholder="Search Food Mine!"
+    (keyup.enter)="search(s.value)"
+    [value]="searchTerm"
+  />
+  <!-- click executes when you click on this button -->
+  <button (click)="search(s.value)">Search</button>
+</div>

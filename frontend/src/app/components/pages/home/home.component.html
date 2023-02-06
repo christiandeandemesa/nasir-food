@@ -1,0 +1,60 @@
+<!--HOME PAGE-->
+<ul>
+  <!--FOOD CONTAINER-->
+  <!-- *ngFor is used to traverse over an array object -->
+  <li *ngFor="let food of foods">
+    <!-- {{}} is used to pass data dynamically, but should be used for semi-dynamic data -->
+    <a routerLink="/food/{{ food.id }}">
+      <!--FOOD IMAGE-->
+      <!-- [] is used to pass data dynamically, but should be used for totally dynamic data -->
+      <img [src]="food.imageUrl" [alt]="food.name" />
+
+      <!--FOOD INFO-->
+      <div class="content">
+        <!--FOOD NAME-->
+        <div class="name">
+          {{ food.name }}
+        </div>
+
+        <!--FOOD LIKE-->
+        <span class="favorite {{ food.favorite ? '' : 'not' }}"> ❤ </span>
+
+        <!--FOOD RATING-->
+        <div class="stars">
+          <star-rating
+            [value]="food.stars"
+            [totalstars]="5"
+            checkedcolor="red"
+            uncheckedcolor="black"
+            size="22px"
+            [readonly]="true"
+          ></star-rating>
+        </div>
+
+        <!--FOOD INFO FOOTER-->
+        <div class="product-item-footer">
+          <!--FOOD COUNTRY ORIGIN-->
+          <div class="origins">
+            <span *ngFor="let origin of food.origins">
+              {{ origin }}
+            </span>
+          </div>
+
+          <!--FOOD COOK TIME-->
+          <div class="cook-time">
+            <span>🕒</span>
+            {{ food.cookTime }}
+          </div>
+        </div>
+
+        <!--FOOD PRICE-->
+        <div class="price">
+          <!-- Shows the number in the form of a currency -->
+          <span>
+            {{ food.price | currency }}
+          </span>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

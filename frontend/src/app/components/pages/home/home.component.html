@@ -5,6 +5,12 @@
 <!--TAGS-->
 <app-tags></app-tags>
 
+<!--NOT FOUND MESSAGE-->
+<app-not-found
+  [visible]="!foods || !foods.length"
+  resetLinkText="Reset Search"
+></app-not-found>
+
 <ul>
   <!--FOOD CONTAINER-->
   <!-- *ngFor is used to traverse over an array object -->

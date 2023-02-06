@@ -1,0 +1,56 @@
+<!--CART PAGE-->
+<!--TITLE-->
+<app-title title="Cart Page" margin="1.5rem 0 0 2.5rem"></app-title>
+<div class="container">
+  <ul>
+    <!--ITEMS IN CART-->
+    <li *ngFor="let cartItem of cart.items">
+      <!--ITEM IMAGE-->
+      <div>
+        <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name" />
+      </div>
+
+      <!--ITEM NAME-->
+      <div>
+        <a routerLink="/food/{{ cartItem.food.id }}">
+          {{ cartItem.food.name }}
+        </a>
+      </div>
+
+      <!--QUANTITY SELECT-->
+      <div>
+        <!-- When the select value is changed, execute the changeQuantity method using the cartItem and this select's value (i.e. quantitySelect.value) -->
+        <select
+          #quantitySelect
+          [value]="cartItem.quantity"
+          (change)="changeQuantity(cartItem, quantitySelect.value)"
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+
+      <!--ITEM PRICE-->
+      <div>{{ cartItem.price | currency }}</div>
+
+      <!--REMOVE BUTTON-->
+      <div>
+        <button class="remove-button" (click)="removeFromCart(cartItem)">
+          Remove
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <!--CHECKOUT CONTAINER-->
+  <div class="checkout">
+    <div>
+      <div class="foods-count">{{ cart.totalCount }}</div>
+      <div class="total-price">{{ cart.totalPrice }}</div>
+    </div>
+    <a routerLink="/checkout">Proceed to Checkout</a>
+  </div>
+</div>

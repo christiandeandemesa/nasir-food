@@ -1,0 +1,30 @@
+<!--HEADER-->
+<header>
+  <div class="container">
+    <!--LOGO-->
+    <a routerLink="/" class="logo">Food Mine!</a>
+    <nav>
+      <ul>
+        <!--LOGIN-->
+        <li>
+          <a routerLink="/login">Login</a>
+        </li>
+
+        <!--USERNAME WITH MENU POP-UP-->
+        <li class="menu-container">
+          <a routerLink="/dashboard">John Doe</a>
+          <div class="menu">
+            <a routerLink="/profile">Profile</a>
+            <a routerLink="/orders">Orders</a>
+            <a>Logout</a>
+          </div>
+        </li>
+
+        <!--CART-->
+        <li>
+          <a routerLink="/cart-page"> Cart <span>3</span> </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

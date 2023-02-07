@@ -1,0 +1,12 @@
+<!--INPUT CONTAINER-->
+<div class="container" [ngStyle]="{ 'background-color': bgColor }">
+  <!--LABEL-->
+  <label>
+    {{ label }}
+  </label>
+
+  <div class="content">
+    <!-- ng-content is used to insert dynamic content (e.g. Everything between input-container in text-input.component.html) -->
+    <ng-content></ng-content>
+  </div>
+</div>

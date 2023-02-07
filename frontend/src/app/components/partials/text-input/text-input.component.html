@@ -1,0 +1,11 @@
+<!--FORM INPUT-->
+<input-container [label]="label">
+  <!-- formControl must match type -->
+  <input [type]="type" [placeholder]="label" [formControl]="formControl" />
+
+  <!--ERROR MESSAGES-->
+  <input-validation
+    [control]="control"
+    [showErrorsWhen]="showErrorsWhen"
+  ></input-validation>
+</input-container>

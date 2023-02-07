@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,9 +16,20 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
 
 @NgModule({
   // declarations holds the components we can use in our app.
-  declarations: [AppComponent, HeaderComponent, HomeComponent, SearchComponent, TagsComponent, FoodPageComponent, CartPageComponent, TitleComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    SearchComponent,
+    TagsComponent,
+    FoodPageComponent,
+    CartPageComponent,
+    TitleComponent,
+    NotFoundComponent,
+  ],
   // imports holds the libraries/frameworks we can use in our app.
-  imports: [BrowserModule, AppRoutingModule, RatingModule],
+  // HttpClientModule allows the frontend to connect to the backend.
+  imports: [BrowserModule, AppRoutingModule, RatingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,13 +1,12 @@
 <!--NOT FOUND MESSAGE-->
-<!-- Uses food.id instead of food because the ts file instantiation of the variable makes it so it can never be undefined -->
 <app-not-found
-  [visible]="!food.id"
+  [visible]="!food"
   notFoundMessage="Food Not Found"
   resetLinkText="Back to Home Page"
 ></app-not-found>
 
 <!--FOOD PAGE-->
-<div *ngIf="food.id" class="container">
+<div *ngIf="food" class="container">
   <!--FOOD IMAGE-->
   <img [src]="food.imageUrl" [alt]="food.name" />
 

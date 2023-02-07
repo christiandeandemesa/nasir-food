@@ -13,6 +13,8 @@ import { FoodPageComponent } from './components/pages/food-page/food-page.compon
 import { CartPageComponent } from './components/pages/cart-page/cart-page.component';
 import { TitleComponent } from './components/partials/title/title.component';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   // declarations holds the components we can use in our app.
@@ -26,10 +28,18 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
     CartPageComponent,
     TitleComponent,
     NotFoundComponent,
+    LoginPageComponent,
   ],
   // imports holds the libraries/frameworks we can use in our app.
   // HttpClientModule allows the frontend to connect to the backend.
-  imports: [BrowserModule, AppRoutingModule, RatingModule, HttpClientModule],
+  // ReactiveFormsModule is for creating forms.
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RatingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,48 @@
+<!--LOGIN PAGE-->
+<div class="container">
+  <div class="details">
+    <!--TITLE-->
+    <app-title title="Login"></app-title>
+
+    <!--LOGIN FORM-->
+    <!-- ngSubmit executes the submit function when a submit button is clicked -->
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <!--EMAIL INPUT-->
+      <div class="input-container">
+        <label>Email</label>
+        <div>
+          <!-- formControlName must match a key in the ts file's loginForm -->
+          <input type="email" placeholder="Email" formControlName="email" />
+        </div>
+
+        <!--EMAIL ERROR MESSAGES-->
+        <div class="error-list" *ngIf="fc.email.errors && isSubmitted">
+          <div *ngIf="fc.email.errors.required">Should not be empty</div>
+          <div *ngIf="fc.email.errors.email">Email is not correct</div>
+        </div>
+      </div>
+
+      <!--PASSWORD INPUT=-->
+      <div class="input-container">
+        <label>Password</label>
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+
+          <!--PASSWORD ERROR MESSAGE-->
+          <div class="error-list" *ngIf="fc.password.errors && isSubmitted">
+            <div *ngIf="fc.password.errors.required">Should not be empty</div>
+          </div>
+        </div>
+      </div>
+
+      <!--LOGIN BUTTON-->
+      <div class="button">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

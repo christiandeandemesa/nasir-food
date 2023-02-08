@@ -43,4 +43,27 @@ router.get(
   })
 );
 
+// Sends the order to be paid.
+router.post(
+  "/pay",
+  asyncHandler(async (req: any, res) => {
+    const { paymentId } = req.body;
+    const order = await OrderModel.findOne({
+      user: req.user.id,
+      status: OrderStatusEnum.NEW,
+    });
+
+    if (!order) {
+      res.status(400).send("Order not found");
+      return;
+    }
+
+    order.paymentId = paymentId;
+    order.status = OrderStatusEnum.PAID;
+    await order.save();
+
+    res.send(order._id);
+  })
+);
+
 export default router;

@@ -18,9 +18,12 @@
     <order-items-list [order]="order"></order-items-list>
   </div>
 
-  <!--MAP TITLE-->
   <div class="map">
+    <!--MAP TITLE-->
     <app-title title="Choose Your Address on Map" fontSize="1.6rem"></app-title>
+
+    <!--LEAFLET MAP-->
+    <map [order]="order"></map>
   </div>
 
   <!--PAYMENT BUTTON-->

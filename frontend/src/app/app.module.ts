@@ -26,6 +26,7 @@ import { LoadingComponent } from './components/partials/loading/loading.componen
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { OrderItemsListComponent } from './components/partials/order-items-list/order-items-list.component';
+import { MapComponent } from './components/partials/map/map.component';
 @NgModule({
   // declarations holds the components we can use in our app.
   declarations: [
@@ -47,6 +48,7 @@ import { OrderItemsListComponent } from './components/partials/order-items-list/
     LoadingComponent,
     CheckoutPageComponent,
     OrderItemsListComponent,
+    MapComponent,
   ],
   // imports holds the libraries/frameworks we can use in our app.
   // HttpClientModule allows the frontend to connect to the backend.

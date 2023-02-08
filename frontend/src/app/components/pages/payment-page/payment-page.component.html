@@ -1,0 +1,37 @@
+<!--PAYMENT PAGE-->
+<div class="container">
+  <div class="content">
+    <!--ORDER SUMMARY TITLE-->
+    <app-title title="Order Summary" fontSize="1.6rem"/>
+
+    <!--NAME AND ADDRESS-->
+    <div class="summary">
+      <div>
+        <h3>Name:</h3>
+        <span>{{order.name}}</span>
+      </div>
+      <div>
+        <h3>Address:</h3>
+        <span>{{order.address}}</span>
+      </div>
+    </div>
+
+    <!--LIST OF ORDERED FOOD-->
+    <order-items-list [order]="order"></order-items-list>
+  </div>
+
+  <div class="map">
+    <!--MAP TITLE-->
+    <app-title title="Shipping Address" fontSize="1.6rem"></app-title>
+
+    <!--LEAFLET MAP-->
+    <map [order]="order" [readonly]="true"></map>
+  </div>
+
+  <!--PAYPAL BUTTON-->
+  <div class="buttons-container">
+    <div class="buttons">
+
+    </div>
+  </div>
+</div>

@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
 import {
   icon,
   LatLng,
@@ -19,12 +25,10 @@ import { Order } from 'src/app/shared/models/Order';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent {
+export class MapComponent implements OnChanges {
   @Input() order!: Order;
+  @Input() readonly = false;
 
-  // Selects a tag from the html file (e.g. <div #map></div>).
-  // {static: true} makes it available in ngOnInit method.
-  @ViewChild('map', { static: true })
   private readonly DEFAULT_LATLNG: LatLngTuple = [13.75, 21.62];
   private readonly MARKER_ZOOM_LEVEL = 16;
   private readonly MARKER_ICON = icon({
@@ -35,22 +39,29 @@ export class MapComponent {
     iconAnchor: [21, 42],
   });
 
-  mapRef!: ElementRef;
+  // Selects a tag from the html file (e.g. <div #map></div>).
+  // {static: true} makes it available in ngOnChanges method.
+  @ViewChild('map', { static: true }) mapRef!: ElementRef;
   map!: Map;
   currentMarker!: Marker;
 
   constructor(private locationService: LocationService) {}
 
-  // Executes the map on page render.
-  ngOnInit(): void {
+  // Executes the map whenever a variable changes.
+  ngOnChanges(): void {
+    if (!this.order) return;
+
     this.initializeMap();
+
+    if (this.readonly && this.addressLatLng) {
+      this.showLocationOnReadonlyMode();
+    }
   }
 
   // Creates the map.
   initializeMap() {
     if (this.map) return;
 
-    // bug this.mapRef is undefined.
     this.map = map(this.mapRef.nativeElement, {
       // Does not show leaflet in bottom right of map.
       attributionControl: false,
@@ -97,11 +108,35 @@ export class MapComponent {
     });
   }
 
+  // Shows a read only version of the map so that addresslatlng cannot be changed.
+  showLocationOnReadonlyMode() {
+    const m = this.map;
+    this.setMarker(this.addressLatLng);
+    m.setView(this.addressLatLng, this.MARKER_ZOOM_LEVEL);
+
+    m.dragging.disable();
+    m.touchZoom.disable();
+    m.doubleClickZoom.disable();
+    m.scrollWheelZoom.disable();
+    m.boxZoom.disable();
+    m.keyboard.disable();
+    m.off('click');
+    m.tap?.disable();
+    this.currentMarker.dragging?.disable();
+  }
+
   // Needed for MongoDB because it cannot accept it if addresLatLng if it has more than 8 decimals.
   set addressLatLng(latlng: LatLng) {
+    if (!latlng.lat.toFixed) return;
+
     latlng.lat = parseFloat(latlng.lat.toFixed(8));
     latlng.lng = parseFloat(latlng.lng.toFixed(8));
     this.order.addressLatLng = latlng;
     console.log(this.order.addressLatLng);
+  }
+
+  // Gets the order's addressLatLng.
+  get addressLatLng() {
+    return this.order.addressLatLng!;
   }
 }

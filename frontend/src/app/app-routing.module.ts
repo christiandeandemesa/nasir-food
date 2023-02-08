@@ -6,6 +6,7 @@ import { CheckoutPageComponent } from './components/pages/checkout-page/checkout
 import { FoodPageComponent } from './components/pages/food-page/food-page.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 
 // Renders various components depending on the url string.
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutPageComponent,
     // Redirect away from this page if the canActivate on AuthGuard returns false.
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'payment',
+    component: PaymentPageComponent,
     canActivate: [AuthGuard],
   },
 ];

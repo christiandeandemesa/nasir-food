@@ -29,4 +29,18 @@ router.post(
   })
 );
 
+// Gets the user's order.
+router.get(
+  "/newOrderForCurrentUser",
+  asyncHandler(async (req: any, res) => {
+    const order = await OrderModel.findOne({
+      user: req.user.id,
+      status: OrderStatusEnum.NEW,
+    });
+
+    if (order) res.send(order);
+    else res.status(400).send();
+  })
+);
+
 export default router;

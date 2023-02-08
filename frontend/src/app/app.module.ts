@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { InputValidationComponent } from './components/partials/input-validation
 import { TextInputComponent } from './components/partials/text-input/text-input.component';
 import { DefaultButtonComponent } from './components/partials/default-button/default-button.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { LoadingComponent } from './components/partials/loading/loading.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 @NgModule({
   // declarations holds the components we can use in our app.
   declarations: [
@@ -40,6 +42,7 @@ import { RegisterPageComponent } from './components/pages/register-page/register
     TextInputComponent,
     DefaultButtonComponent,
     RegisterPageComponent,
+    LoadingComponent,
   ],
   // imports holds the libraries/frameworks we can use in our app.
   // HttpClientModule allows the frontend to connect to the backend.
@@ -58,7 +61,10 @@ import { RegisterPageComponent } from './components/pages/register-page/register
       newestOnTop: false,
     }),
   ],
-  providers: [],
+  // Adds the LoadingInterceptor as an interceptor.
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

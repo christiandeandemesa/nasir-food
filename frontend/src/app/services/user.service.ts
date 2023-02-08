@@ -24,6 +24,11 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable();
   }
 
+  // Returns the current user.
+  public get currentUser(): User {
+    return this.userSubject.value;
+  }
+
   // Returns a user Observable when logging in, then adds it to local storage along with showing a toastr message.
   // IUserLogin indicates it is an interface (Note: an interface cannnot create a new instance [e.g. new User()] like a class can).
   // Using .subscribe() changes the return type to Subscription, so instead uses .pipe(tap()) to retain the return as an Observable.

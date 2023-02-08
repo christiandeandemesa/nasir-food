@@ -55,6 +55,11 @@ export class CartService {
     return this.cartSubject.asObservable();
   }
 
+  // Gets the latest cart.
+  getCart(): Cart {
+    return this.cartSubject.value;
+  }
+
   // Sets the cart in local storage to persist it.
   private setCartToLocalStorage(): void {
     // Sets the totalPrice and totalCount in the cart.

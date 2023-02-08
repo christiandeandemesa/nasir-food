@@ -1,0 +1,49 @@
+<!--LIST OF ORDERED FOOD-->
+<table>
+  <tr>
+    <td colspan="5">
+      <h3>Order Items:</h3>
+    </td>
+  </tr>
+  <tr *ngFor="let item of order.items">
+    <!--FOOD IMAGE-->
+    <td>
+      <a routerLink="/food/{{ item.food.id }}">
+        <img [src]="item.food.imageUrl" />
+      </a>
+    </td>
+
+    <!--FOOD NAME-->
+    <td>
+      {{ item.food.name }}
+    </td>
+
+    <!--FOOD PRICE-->
+    <td>
+      {{ item.food.price | currency }}
+    </td>
+
+    <!--FOOD QUANTITY-->
+    <td>
+      {{ item.quantity }}
+    </td>
+
+    <!--TOTAL PRICE FOR ONE FOOD OF X QUANTITY-->
+    <td>
+      {{ item.price | currency }}
+    </td>
+  </tr>
+
+  <!--TOTAL PRICE FOR ALL FOOD-->
+  <tr>
+    <td colspan="3"></td>
+    <td>
+      <strong> Total: </strong>
+    </td>
+    <td>
+      <strong>
+        {{ order.totalPrice | currency }}
+      </strong>
+    </td>
+  </tr>
+</table>

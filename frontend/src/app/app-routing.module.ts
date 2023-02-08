@@ -4,6 +4,7 @@ import { CartPageComponent } from './components/pages/cart-page/cart-page.compon
 import { FoodPageComponent } from './components/pages/food-page/food-page.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 
 // Renders various components depending on the url string.
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'food/:id', component: FoodPageComponent },
   { path: 'cart-page', component: CartPageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
 ];
 
 @NgModule({

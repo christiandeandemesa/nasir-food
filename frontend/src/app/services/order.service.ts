@@ -5,6 +5,7 @@ import {
   ORDER_CREATE_URL,
   ORDER_NEW_FOR_CURRENT_USER_URL,
   ORDER_PAY_URL,
+  ORDER_TRACK_URL,
 } from '../shared/constants/urls';
 import { Order } from '../shared/models/Order';
 
@@ -27,5 +28,10 @@ export class OrderService {
   // Sends the order to be paid.
   pay(order: Order): Observable<string> {
     return this.http.post<string>(ORDER_PAY_URL, order);
+  }
+
+  // Gets the user's order by its id.
+  trackOrderById(id: number): Observable<Order> {
+    return this.http.get<Order>(ORDER_TRACK_URL + id);
   }
 }

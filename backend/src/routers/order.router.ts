@@ -66,4 +66,13 @@ router.post(
   })
 );
 
+// Gets one order by its id.
+router.get(
+  "/track/:id",
+  asyncHandler(async (req, res) => {
+    const order = await OrderModel.findById(req.params.id);
+    res.send(order);
+  })
+);
+
 export default router;

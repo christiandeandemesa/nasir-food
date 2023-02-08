@@ -1,0 +1,51 @@
+<!--ORDER PAGE-->
+<div class="container">
+  <!--ORDER DETAILS-->
+  <div class="content" *ngIf="order">
+    <!--ORDER ID-->
+    <h1>Order #{{ order.id }}</h1>
+    <div class="details">
+      <!--ORDER DATE-->
+      <div>
+        <!-- Uses | date : "medium" to convert createdAt into a date with time -->
+        <strong>Date</strong>
+        {{ order.createdAt | date : "medium" }}
+      </div>
+
+      <!--USER NAME-->
+      <div>
+        <strong>Name</strong>
+        {{ order.name }}
+      </div>
+
+      <!--ORDER ADDRESS-->
+      <div>
+        <strong>Address</strong>
+        {{ order.address }}
+      </div>
+
+      <!--ORDER STATUS-->
+      <div>
+        <strong>Status</strong>
+        {{ order.status }}
+      </div>
+
+      <!--ORDER PAYMENT ID-->
+      <div *ngIf="order.paymentId">
+        <strong>Payment ID</strong>
+        {{ order.paymentId }}
+      </div>
+    </div>
+
+    <!--LIST OF ORDERED FOOD-->
+    <order-items-list [order]="order"></order-items-list>
+  </div>
+
+  <div>
+    <!--MAP TITLE-->
+    <app-title title="Shipping Address" fontSize="1.6rem"></app-title>
+
+    <!--LEAFLET MAP-->
+    <map [order]="order" [readonly]="true"></map>
+  </div>
+</div>

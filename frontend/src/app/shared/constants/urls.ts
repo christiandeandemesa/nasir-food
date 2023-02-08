@@ -9,3 +9,6 @@ export const FOODS_BY_ID_URL = FOODS_URL + '/';
 export const USERS_URL = BASE_URL + '/api/users';
 export const USER_LOGIN_URL = USERS_URL + '/login';
 export const USER_REGISTER_URL = USERS_URL + '/register';
+
+export const ORDERS_URL = BASE_URL + '/api/orders';
+export const ORDER_CREATE_URL = ORDERS_URL + '/create';

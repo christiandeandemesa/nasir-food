@@ -50,6 +50,7 @@ export class MapComponent {
   initializeMap() {
     if (this.map) return;
 
+    // bug this.mapRef is undefined.
     this.map = map(this.mapRef.nativeElement, {
       // Does not show leaflet in bottom right of map.
       attributionControl: false,
